@@ -7,21 +7,17 @@ plugins {
 group = 'com.kodilla'
 version = '1.0-SNAPSHOT'
 
-// This section tells Gradle which class to run
+repositories {
+    mavenCentral()
+}
+
 application {
-    // I set this to Tic-Tac-Toe so you can run your new project
-    mainClass = 'com.kodilla.tictactoe.TicTacToeApp'
-
-
+    mainClass = 'com.kodilla.tictactoe2.AppLauncher'
 }
 
 javafx {
     version = "21"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
