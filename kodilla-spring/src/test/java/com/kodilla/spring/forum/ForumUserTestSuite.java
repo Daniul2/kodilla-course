@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class ForumUserTestSuite {
 
+
     @Test
     void testGetUsername() {
         //Given
