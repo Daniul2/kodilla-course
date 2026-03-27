@@ -1,32 +1,41 @@
 package com.kodilla.spring.calculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@SpringBootTest
 class CalculatorTestSuite {
-    @Autowired
-    private Calculator calculator;
 
     @Test
-    void testCalculations(){
+    void testCalculations() {
         //Given
-        double a = 10.0;
-        double b = 5.0;
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Calculator calculator = context.getBean(Calculator.class);
 
         //When
-        double sum = calculator.add(a, b);
-        double difference = calculator.sub(a, b);
-        double product = calculator.mul(a, b);
-        double quotient = calculator.div(a, b);
+        double addResult = calculator.add(10, 5);
+        double subResult = calculator.sub(10, 5);
+        double mulResult = calculator.mul(10, 5);
+        double divResult = calculator.div(10, 5);
 
         //Then
-        assertEquals(15.0, sum);
-        assertEquals(5.0, difference);
-        assertEquals(50.0, product);
-        assertEquals(2.0, quotient);
+        Assertions.assertEquals(15.0, addResult);
+        Assertions.assertEquals(5.0, subResult);
+        Assertions.assertEquals(50.0, mulResult);
+        Assertions.assertEquals(2.0, divResult);
+    }
+
+    @Test
+    void testDivisionByZero() {
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
+        Calculator calculator = context.getBean(Calculator.class);
+
+        //When
+        double result = calculator.div(10, 0);
+
+        //Then
+        Assertions.assertTrue(Double.isInfinite(result));
     }
 }
