@@ -2,35 +2,36 @@ package com.kodilla.patterns.singleton;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoggerTestSuite {
     private static Logger logger;
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         logger = Logger.INSTANCE;
-
     }
-    @Test
-    void testGetLastLog(){
 
-        //When
-        logger.log("Log for test 1");
+    @Test
+    public void testGetLastLog() {
+        // Given
+        String logMessage = "Log for test 1";
 
         // When
+        logger.log(logMessage);
         String result = logger.getLastLog();
 
         // Then
         assertEquals("Log for test 1", result);
-
     }
+
     @Test
-    void testNewLog(){
-        logger.log("User login: admin");
+    public void testNewLog() {
+        // Given
+        String logMessage = "User login: admin";
 
         // When
+        logger.log(logMessage);
         String result = logger.getLastLog();
 
         // Then
