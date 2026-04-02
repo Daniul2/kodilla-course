@@ -1,13 +1,11 @@
 package com.kodilla.patterns.factory.tasks;
 
-public final class ShoppingTask implements Task {
-    private final String taskName;
+public final class ShoppingTask extends AbstractTask {
     private final String whatToBuy;
     private final double quantity;
-    private boolean isExecuted = false;
 
     public ShoppingTask(String taskName, String whatToBuy, double quantity) {
-        this.taskName = taskName;
+        super(taskName);
         this.whatToBuy = whatToBuy;
         this.quantity = quantity;
     }
@@ -16,15 +14,5 @@ public final class ShoppingTask implements Task {
     public void executeTask() {
         System.out.println("Executing task: " + taskName + " - buying " + quantity + " of " + whatToBuy);
         isExecuted = true;
-    }
-
-    @Override
-    public String getTaskName() {
-        return taskName;
-    }
-
-    @Override
-    public boolean isTaskExecuted() {
-        return isExecuted;
     }
 }

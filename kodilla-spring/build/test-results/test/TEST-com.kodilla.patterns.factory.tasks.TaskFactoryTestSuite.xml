@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.patterns.factory.tasks.TaskFactoryTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-02T18:02:56.669Z" hostname="DANIL228" time="0.068">
+  <properties/>
+  <testcase name="testFactoryShopping()" classname="com.kodilla.patterns.factory.tasks.TaskFactoryTestSuite" time="0.068"/>
+  <system-out><![CDATA[Executing task: Shopping - buying 2.0 of Bread
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
