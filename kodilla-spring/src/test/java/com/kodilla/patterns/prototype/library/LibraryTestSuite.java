@@ -1,16 +1,13 @@
 package com.kodilla.patterns.prototype.library;
 
-import com.kodilla.patterns.prototype.Book;
-import com.kodilla.patterns.prototype.Library;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LibraryTestSuite {
+class LibraryTestSuite {
+
     @Test
-    void testGetBooks(){
+    void testGetBooks() throws CloneNotSupportedException {
         // Given
         Library library = new Library("City Library 1");
         Book book1 = new Book("Secrets of Java", "Ian Bull", LocalDate.of(2010, 1, 1));
@@ -21,25 +18,14 @@ public class LibraryTestSuite {
         library.getBooks().add(book2);
         library.getBooks().add(book3);
 
-        Library clonedLibrary = null;
-        try {
-            clonedLibrary = library.shallowCopy();
-            clonedLibrary.setName("City Library 2 (Shallow)");
+        Library clonedLibrary = library.shallowCopy();
+        clonedLibrary.setName("City Library 2 (Shallow)");
 
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e);
-        }
+        Library deepClonedLibrary = library.deepCopy();
+        deepClonedLibrary.setName("City Library 3 (Deep)");
 
-        Library deepClonedLibrary = null;
-        try {
-            deepClonedLibrary = library.deepCopy();
-            deepClonedLibrary.setName("City Library 3 (Deep)");
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e);
-        }
         // When
         library.getBooks().remove(book1);
-
 
         // Then
         System.out.println(library);
@@ -52,6 +38,5 @@ public class LibraryTestSuite {
 
         assertSame(clonedLibrary.getBooks(), library.getBooks());
         assertNotSame(deepClonedLibrary.getBooks(), library.getBooks());
-
     }
 }
