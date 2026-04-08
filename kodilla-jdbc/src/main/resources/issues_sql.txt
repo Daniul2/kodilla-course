@@ -1,0 +1,58 @@
+DROP TABLE IF EXISTS ISSUES;
+DROP TABLE IF EXISTS ISSUESLISTS;
+DROP TABLE IF EXISTS USERS;
+
+CREATE TABLE USERS (
+                       ID INT NOT NULL AUTO_INCREMENT,
+                       USERNAME VARCHAR(100) NOT NULL UNIQUE,
+                       FULLNAME VARCHAR(200),
+                       PRIMARY KEY (ID)
+);
+
+CREATE TABLE ISSUESLISTS (
+                             ID INT NOT NULL AUTO_INCREMENT,
+                             NAME VARCHAR(100) NOT NULL UNIQUE,
+                             PRIMARY KEY (ID)
+);
+
+CREATE TABLE ISSUES (
+                        ID INT NOT NULL AUTO_INCREMENT,
+                        ISSUESLIST_ID INT NOT NULL,
+                        SUMMARY VARCHAR(200) NOT NULL,
+                        DESCRIPTION TEXT,
+                        USER_ID_ASSIGNEDTO INT,
+                        PRIMARY KEY (ID),
+                        FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID),
+                        FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO USERS (USERNAME, FULLNAME) VALUES
+                                           ('anna', 'Anna Kowalska'),
+                                           ('marek', 'Marek Nowak'),
+                                           ('ewa', 'Ewa Zielinska');
+
+INSERT INTO ISSUESLISTS (NAME) VALUES
+                                   ('ToDo'),
+                                   ('In progress'),
+                                   ('Done');
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+                                                                                 (1, 'Create specification', 'Prepare requirements specification', 1),
+                                                                                 (1, 'Gather requirements', 'Client meeting', 2),
+                                                                                 (1, 'Prepare mockups', 'Initial UI mockups', 3),
+                                                                                 (1, 'Risk analysis', 'Identify risks', 1),
+                                                                                 (1, 'Create repository', 'Initialize Git repo', 2);
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+                                                                                 (2, 'API implementation', 'REST endpoints', 2),
+                                                                                 (2, 'Unit tests', 'Authorization service tests', 3),
+                                                                                 (2, 'DB integration', 'Configure database', 1),
+                                                                                 (2, 'UI fixes', 'Fix UI issues', 3),
+                                                                                 (2, 'Query optimization', 'Optimize SQL queries', 2);
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+                                                                                 (3, 'CI configuration', 'Add CI pipeline', 1),
+                                                                                 (3, 'Installation docs', 'Write installation guide', 2),
+                                                                                 (3, 'Data migration', 'Move test data', 3),
+                                                                                 (3, 'Code review', 'Review payment module', 1),
+                                                                                 (3, 'Release v1.0', 'Publish version 1.0', 2);
