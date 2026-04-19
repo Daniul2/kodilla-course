@@ -2,6 +2,8 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/19d9263a-59c9-4fb4-b2e0-e44f9de040e5/console.sql" value="19d9263a-59c9-4fb4-b2e0-e44f9de040e5" />
+    <file url="file://$PROJECT_DIR$/kodilla-hibernate/src/main/java/com/kodilla/hibernate/manytomany/Company.java" value="19d9263a-59c9-4fb4-b2e0-e44f9de040e5" />
+    <file url="file://$PROJECT_DIR$/kodilla-hibernate/src/main/java/com/kodilla/hibernate/task/Task.java" value="19d9263a-59c9-4fb4-b2e0-e44f9de040e5" />
     <file url="file://$PROJECT_DIR$/kodilla-jdbc/src/main/resources/issues_sql.txt" value="19d9263a-59c9-4fb4-b2e0-e44f9de040e5" />
   </component>
 </project>

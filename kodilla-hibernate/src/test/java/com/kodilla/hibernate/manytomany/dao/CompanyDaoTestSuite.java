@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
@@ -57,5 +60,28 @@ class CompanyDaoTestSuite {
         //    //do nothing
         //}
     }
+    @Test
+    void testRetrieveByFirstThreeLetters() {
+        // Given
+        Company company1 = new Company("Software Machine");
+        Company company2 = new Company("SoftVision");
+        Company company3 = new Company("DataMaesters");
+
+        companyDao.save(company1);
+        companyDao.save(company2);
+        companyDao.save(company3);
+        System.out.println("company1 = " + company1.getName());
+        System.out.println("company2 = " + company2.getName());
+        System.out.println("company3 = " + company3.getName());
+        // When
+        List<Company> result = companyDao.retrieveByFirstThreeLetters("Sof");
+
+        // Then
+        assertEquals(2, result.size());
+
+        // CleanUp
+        companyDao.deleteAll();
+    }
+
 }
 
