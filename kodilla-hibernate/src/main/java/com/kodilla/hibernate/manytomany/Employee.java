@@ -1,10 +1,8 @@
 package com.kodilla.hibernate.manytomany;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
-
-import java.awt.*;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +16,7 @@ public class Employee {
     private int id;
     private String firstname;
     private String lastname;
-    private List<Company>companies = new ArrayList<>();
-
+    private List<Company> companies = new ArrayList<>();
 
     public Employee() {
     }
@@ -28,6 +25,7 @@ public class Employee {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -35,6 +33,7 @@ public class Employee {
     public int getId() {
         return id;
     }
+
     @NotNull
     @Column(name = "FIRSTNAME")
     public String getFirstname() {
@@ -47,17 +46,9 @@ public class Employee {
         return lastname;
     }
 
-    private void setId(int id) {
-        this.id = id;
-    }
-
-    private void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    private void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+    private void setId(int id) { this.id = id; }
+    private void setFirstname(String firstname) { this.firstname = firstname; }
+    private void setLastname(String lastname) { this.lastname = lastname; }
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(

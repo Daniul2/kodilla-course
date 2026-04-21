@@ -13,11 +13,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
 class CompanyDaoTestSuite {
+
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
+
     @Test
-    void testSaveManyToMany(){
-        //Given
+    void testSaveManyToMany() {
+        // Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -38,7 +43,7 @@ class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
 
-        //When
+        // When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
@@ -46,42 +51,42 @@ class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        //Then
+        // Then
         assertNotEquals(0, softwareMachineId);
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
 
-        //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        // CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            // do nothing
+        }
     }
-    @Test
-    void testRetrieveByFirstThreeLetters() {
-        // Given
-        Company company1 = new Company("Software Machine");
-        Company company2 = new Company("SoftVision");
-        Company company3 = new Company("DataMaesters");
 
-        companyDao.save(company1);
-        companyDao.save(company2);
-        companyDao.save(company3);
-        System.out.println("company1 = " + company1.getName());
-        System.out.println("company2 = " + company2.getName());
-        System.out.println("company3 = " + company3.getName());
+    @Test
+    void testNamedQueries() {
+        // Given
+        Employee employee = new Employee("John", "Doe");
+        Company company = new Company("Software House");
+
+        employee.getCompanies().add(company);
+        company.getEmployees().add(employee);
+
+        companyDao.save(company);
+        int companyId = company.getId();
+
         // When
-        List<Company> result = companyDao.retrieveByFirstThreeLetters("Sof");
+        List<Employee> employeesByLastname = employeeDao.retrieveByLastname("Doe");
+        List<Company> companiesByPrefix = companyDao.retrieveByFirstThreeLetters("Sof");
 
         // Then
-        assertEquals(2, result.size());
+        assertEquals(1, employeesByLastname.size());
+        assertEquals(1, companiesByPrefix.size());
 
         // CleanUp
-        companyDao.deleteAll();
+        companyDao.deleteById(companyId);
     }
-
 }
-
