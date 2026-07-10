@@ -2,10 +2,28 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
+      <module name="kodilla-course" target="21" />
+      <module name="kodilla-course.kodilla-exception" target="21" />
+      <module name="kodilla-course.kodilla-exception.main" target="21" />
+      <module name="kodilla-course.kodilla-exception.test" target="21" />
+      <module name="kodilla-course.kodilla-intro" target="21" />
+      <module name="kodilla-course.kodilla-intro.main" target="21" />
+      <module name="kodilla-course.kodilla-intro.test" target="21" />
+      <module name="kodilla-course.kodilla-jdbc" target="21" />
+      <module name="kodilla-course.kodilla-jdbc.main" target="21" />
+      <module name="kodilla-course.kodilla-jdbc.test" target="21" />
+      <module name="kodilla-course.kodilla-spring" target="21" />
       <module name="kodilla-course.kodilla-spring-intro.main" target="17" />
       <module name="kodilla-course.kodilla-spring-intro.test" target="17" />
       <module name="kodilla-course.kodilla-spring-web.main" target="17" />
       <module name="kodilla-course.kodilla-spring-web.test" target="17" />
+      <module name="kodilla-course.kodilla-spring.main" target="21" />
+      <module name="kodilla-course.kodilla-spring.test" target="21" />
+      <module name="kodilla-course.kodilla-testing" target="21" />
+      <module name="kodilla-course.kodilla-testing.main" target="21" />
+      <module name="kodilla-course.kodilla-testing.test" target="21" />
+      <module name="kodilla-course.main" target="21" />
+      <module name="kodilla-course.test" target="21" />
       <module name="kodilla-exception" target="21" />
       <module name="kodilla-exception.main" target="21" />
       <module name="kodilla-exception.test" target="21" />
