@@ -13,9 +13,14 @@ public class DbManager {
     private static String url;
     private static String user;
     private static String password;
+    private static DbManager instance;
 
+    private DbManager() {
+    }
     static {
         try (InputStream is = DbManager.class.getResourceAsStream(PROPS_FILE)) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
             Properties props = new Properties();
             if (is != null) {
                 props.load(is);
@@ -23,13 +28,22 @@ public class DbManager {
                 user = props.getProperty("db.user");
                 password = props.getProperty("db.password");
             } else {
-                url = "jdbc:mysql://localhost:3306/todo?useSSL=false&serverTimezone=UTC";
+                url = "jdbc:mysql://localhost:3306/kodilla_course?useSSL=false&serverTimezone=UTC";
                 user = "root";
-                password = "qwerty12345@";
+                password = "";
             }
         } catch (IOException e) {
             throw new ExceptionInInitializerError(e);
+        } catch (ClassNotFoundException e) {
+            throw new ExceptionInInitializerError(e);
         }
+    }
+
+    public static synchronized DbManager getInstance() {
+        if (instance == null) {
+            instance = new DbManager();
+        }
+        return instance;
     }
 
     public static Connection getConnection() throws SQLException {
