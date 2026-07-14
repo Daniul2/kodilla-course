@@ -1,0 +1,26 @@
+{
+  "carName": "Model X",
+  "brand": "Tesla",
+  "seats": [
+    {
+      "material": "Leather",
+      "color": "Black",
+      "engineCapacity": 2.0
+    },
+    {
+      "material": "Leather",
+      "color": "White",
+      "engineCapacity": 2.0
+    },
+    {
+      "material": "Fabric",
+      "color": "Gray",
+      "engineCapacity": 2.0
+    },
+    {
+      "material": "Fabric",
+      "color": "Black",
+      "engineCapacity": 2.0
+    }
+  ]
+}
